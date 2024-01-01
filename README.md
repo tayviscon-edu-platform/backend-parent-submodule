@@ -1,0 +1,1 @@
+Родительский submodule для backend-сервисов проекта Tayviscon Edu Platform
