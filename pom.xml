@@ -22,6 +22,7 @@
 		<openfeign.version>13.1</openfeign.version>
 		<openfeign.form.version>3.8.0</openfeign.form.version>
 		<spring.cloud.version>4.1.0</spring.cloud.version>
+		<build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -169,6 +170,27 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Плагин, обеспечивающий попадание классов сабмодулей в кодовую базу -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>${build-helper-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/contracts</source>
+								<source>src/submodules/common</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
