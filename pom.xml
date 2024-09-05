@@ -23,6 +23,7 @@
 		<openfeign.form.version>3.8.0</openfeign.form.version>
 		<spring.cloud.version>4.1.0</spring.cloud.version>
 		<build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
+		<surefire.version>3.5.0</surefire.version>
 	</properties>
 
 	<dependencies>
@@ -192,6 +193,31 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Плагин, запускающий модульные тесты -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefire.version}</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+			<!-- Плагин, запускающий интеграционные тесты -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${surefire.version}</version>
+				<configuration>
+					<includes>
+						<include>**/*IntegrationTest.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
